@@ -16,14 +16,17 @@
         >
         <EditText
             android:id="@+id/resource"
+            android:hint="Water resource name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/location"
+            android:hint="Location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/type"
+            android:hint="Type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Button
