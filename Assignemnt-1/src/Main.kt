@@ -54,7 +54,7 @@ fun getWeight() {
 }
 fun main() {
     println("Hello World!")
-    println(findFirstLastANumber(4123))
+    println(findFirstLastANumber(11))
     println(findOddSquares(arrayOf(1,2,3,4,5,6,7,8,9,10)))
     getWeight()
     var test = Test()
