@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
             return
         }
         var txt = guessInput.text
+        if(txt.length == 0){
+            guessWarning.text = "Please input valid input"
+            return
+        }
         val curr = (0 until list.size).random()
         var result = ""
         if (list.get(curr).equals(txt.toString().trim())){
@@ -48,8 +52,8 @@ class MainActivity : AppCompatActivity() {
         }else {
             result = "Sorry wrong guess the correct answer was "
         }
-        guessWarning.text = result+ list.get(curr)
-
+        guessWarning.text = result + list.get(curr)
+        guessInput.setText("")
     }
 
     fun addOnSubmit(){
@@ -65,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
+        addInput.setText("")
         list.add(value);
     }
 }
