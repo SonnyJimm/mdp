@@ -10,9 +10,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val foodPreferences = Intent(this,FoodPreferences::class.java)
+        val dietaryHabits = Intent(this,DietaryHabits::class.java)
         val prefBtn = findViewById<Button>(R.id.preferences)
+        val dietBtn = findViewById<Button>(R.id.habits)
         prefBtn.setOnClickListener{
             startActivity(foodPreferences)
+        }
+        dietBtn.setOnClickListener {
+            startActivity(dietaryHabits)
         }
 
     }

@@ -6,7 +6,23 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <string-array name="food_fav">
+        <item>None</item>
+        <item>Chinese</item>
+        <item>French</item>
+        <item>Italian</item>
+        <item>Indian</item>
+        <item>Japanese</item>
+        <item>Thai</item>
+        <item>Turkish</item>
+    </string-array>
+    <string-array name="food_out">
+        <item>None</item>
+        <item>Never</item>
+        <item>Rarely</item>
+        <item>Sometimes</item>
+        <item>Frequently</item>
+    </string-array>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
