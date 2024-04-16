@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bachir.sportsnewsandinformationapp.dialog.NewsDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,7 +24,8 @@ class NewsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private  lateinit var list : ArrayList<NewsModel>
+    private  lateinit var listAdabter : NewsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -37,8 +40,8 @@ class NewsFragment : Fragment() {
     ): View? {
         val holder= inflater.inflate(R.layout.fragment_news, container, false)
         var recyclerView = holder.findViewById<RecyclerView>(R.id.newsList);
-        var list = ArrayList<NewsModel>()
-        var listAdabter = NewsAdapter(list,holder.context)
+        list = ArrayList<NewsModel>()
+        listAdabter = NewsAdapter(list,holder.context)
         recyclerView.layoutManager = LinearLayoutManager(holder.context,LinearLayoutManager.VERTICAL,false)
         recyclerView.adapter = listAdabter
         list.add(NewsModel("https://upload.wikimedia.org/wikipedia/commons/9/92/Youth-soccer-indiana.jpg","Hello this is a title","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."))
@@ -49,10 +52,16 @@ class NewsFragment : Fragment() {
         list.add(NewsModel("https://upload.wikimedia.org/wikipedia/commons/9/92/Youth-soccer-indiana.jpg","Hello this is a titaweale","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."))
         list.add(NewsModel("https://upload.wikimedia.org/wikipedia/commons/9/92/Youth-soccer-indiana.jpg","Hello this is a titaale","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."))
         listAdabter.notifyDataSetChanged()
-
+        val btn = holder.findViewById<FloatingActionButton>(R.id.addNews)
+        btn.setOnClickListener{
+            NewsDialog(this).show(parentFragmentManager,"news fragmet")
+        }
         return holder
     }
-
+    fun addNews(newsModel: NewsModel){
+        list.add(newsModel)
+        listAdabter.notifyItemChanged(list.size-1)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

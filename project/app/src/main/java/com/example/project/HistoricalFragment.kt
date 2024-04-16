@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bachir.sportsnewsandinformationapp.dialog.ArchiveDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,7 +24,8 @@ class HistoricalFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var list :ArrayList<HistoricalModel>
+    private lateinit var adapter:HistoryAdabpter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,7 +41,7 @@ class HistoricalFragment : Fragment() {
         // Inflate the layout for this fragment
         val holder = inflater.inflate(R.layout.fragment_historical, container, false)
         val recyclerView = holder.findViewById<RecyclerView>(R.id.historicalList)
-        val list :ArrayList<HistoricalModel> = arrayListOf (
+        list = arrayListOf (
             HistoricalModel("First Super Bowl", "01/15/1967", "The Green Bay Packers triumphed over the Kansas City Chiefs, marking the birth of a legendary sports tradition."),
             HistoricalModel("Miracle on Ice", "02/22/1980", "Team USA's unexpected victory against the dominant Soviet Union hockey team captivated the world during the Winter Olympics."),
             HistoricalModel("Jesse Owens at the 1936 Olympics", "08/09/1936", "Jesse Owens' historic performance shattered racial barriers and showcased athletic excellence amidst Nazi Germany's propaganda."),
@@ -50,11 +53,19 @@ class HistoricalFragment : Fragment() {
             HistoricalModel("Babe Ruth's Called Shot", "10/01/1932", "Ruth's mythical 'called shot' home run in the World Series against the Cubs remains a legendary moment in baseball folklore."),
             HistoricalModel("The Rumble in the Jungle", "10/30/1974", "Ali's strategic triumph over Foreman in Zaire exemplified resilience and tactical brilliance in the face of overwhelming odds.")
         )
-        recyclerView.adapter = HistoryAdabpter(list,holder.context)
+        adapter =HistoryAdabpter(list,holder.context)
+        recyclerView.adapter =adapter
         recyclerView.layoutManager = LinearLayoutManager(holder.context,LinearLayoutManager.VERTICAL,false)
+        val addArchive = holder.findViewById<FloatingActionButton>(R.id.addHistorical)
+        addArchive.setOnClickListener{
+            ArchiveDialog(this).show(parentFragmentManager,"archive dialog")
+        }
         return holder
     }
-
+    fun addHistory(model: HistoricalModel){
+        list.add(model)
+        adapter.notifyItemChanged(list.size-1)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

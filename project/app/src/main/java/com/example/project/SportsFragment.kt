@@ -8,25 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bachir.sportsnewsandinformationapp.dialog.SportDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SportsFragment : Fragment() {
 
     companion object {
         fun newInstance() = SportsFragment()
     }
-
+    private lateinit var listAdabter :SportCategoryAdabter
     private lateinit var viewModel: SportsViewModel
-
+    private lateinit var list : ArrayList<SportCategoryModel>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var holder = inflater.inflate(R.layout.fragment_sports, container, false)
         var recyclerView = holder.findViewById<RecyclerView>(R.id.categories);
-        var list = ArrayList<SportCategoryModel>()
+        list = ArrayList<SportCategoryModel>()
         val layoutManager = GridLayoutManager(holder.context, 2);
         recyclerView.layoutManager = layoutManager
-        var listAdabter = SportCategoryAdabter(list,holder.context)
+        listAdabter = SportCategoryAdabter(list,holder.context)
         recyclerView.adapter = listAdabter
         list.add(SportCategoryModel("Measure","Car racing","Auto racing is a motorsport involving the racing of automobiles for competition. In North America, the term is commonly used to describe all forms of automobile sport including non-racing disciplines. Auto racing has existed since the invention of the automobile"))
         list.add(SportCategoryModel("Precision","Archery","\n" +
@@ -44,9 +46,16 @@ class SportsFragment : Fragment() {
                 "\n"))
 
         listAdabter.notifyDataSetChanged()
+        val btn = holder.findViewById<FloatingActionButton>(R.id.addSport)
+        btn.setOnClickListener{
+            SportDialog(this).show(parentFragmentManager,"Sport dialog")
+        }
         return holder
     }
-
+    fun addSport(sportCategoryModel: SportCategoryModel){
+        list.add(sportCategoryModel)
+        listAdabter.notifyItemChanged(list.size-1)
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SportsViewModel::class.java)

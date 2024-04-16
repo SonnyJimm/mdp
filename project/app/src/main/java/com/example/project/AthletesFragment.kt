@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bachir.sportsnewsandinformationapp.dialog.AthleteDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,7 +26,8 @@ class AthletesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var list :ArrayList<AthletesModel>
+    private lateinit var listAdabter: AthleteAdabter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,7 +44,7 @@ class AthletesFragment : Fragment() {
         val holder = inflater.inflate(R.layout.fragment_athletes, container, false)
         var recyclerView = holder.findViewById<RecyclerView>(R.id.athleteList)
         recyclerView.layoutManager = LinearLayoutManager(holder.context,LinearLayoutManager.VERTICAL,false)
-        var list :ArrayList<AthletesModel> = arrayListOf(
+        list  = arrayListOf(
             AthletesModel(
                 "Usain Bolt",
                 "Track and Field",
@@ -124,15 +126,18 @@ class AthletesFragment : Fragment() {
                 "Tendulkar is a cricket legend, holding numerous batting records and revered as the 'God of Cricket' in India."
             )
         )
-        var listAdabter = AthleteAdabter(list,holder.context)
+        listAdabter = AthleteAdabter(list,holder.context)
         recyclerView.adapter = listAdabter
         val btn = holder.findViewById<FloatingActionButton>(R.id.athleteAdd)
         btn.setOnClickListener{
-            Log.d("custom","workeed")
+            AthleteDialog(this).show(parentFragmentManager,"Athlete Dialog")
         }
         return holder
     }
-
+    fun addAthlete(athlete:AthletesModel){
+        list.add(athlete)
+        listAdabter.notifyItemChanged(list.size-1)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

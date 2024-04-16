@@ -27,11 +27,11 @@ class AthleteAdabter(private val athleteList:ArrayList<AthletesModel>, private v
     }
 
     override fun onBindViewHolder(holder: AthleteAdapterViewHolder, position: Int) {
-        holder.athleteSport.text = holder.athleteSport.text.toString() + athleteList[position].athleteSport
-        holder.athleteName.text = holder.athleteName.text.toString() + athleteList[position].athleteName
-        holder.athleteCountry.text = holder.athleteCountry.text.toString() + athleteList[position].athleteCountry
-        holder.athleteBest.text = holder.athleteBest.text.toString() + athleteList[position].athleteBest
-        holder.athletesMedals.text = holder.athletesMedals.text.toString() + athleteList[position].athletesMedals
-        holder.athletesFact.text = holder.athletesFact.text.toString() + athleteList[position].athletesFact
+        holder.athleteSport.text = "Name: "+ athleteList[position].athleteSport
+        holder.athleteName.text = "Sport: " + athleteList[position].athleteName
+        holder.athleteCountry.text = "Country: " + athleteList[position].athleteCountry
+        holder.athleteBest.text = "Best Performance: " + athleteList[position].athleteBest
+        holder.athletesMedals.text = "Medals Awarded: " + athleteList[position].athletesMedals
+        holder.athletesFact.text ="Facts: "+ athleteList[position].athletesFact
     }
 }

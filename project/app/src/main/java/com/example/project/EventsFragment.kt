@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bachir.sportsnewsandinformationapp.dialog.EventDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,7 +24,8 @@ class EventsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var list : ArrayList<EventModel>
+    private lateinit var adapter: EventAdabpter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -40,18 +43,24 @@ class EventsFragment : Fragment() {
         val recyclerView = holder.findViewById<RecyclerView>(R.id.eventList)
         recyclerView.layoutManager = LinearLayoutManager(holder.context,
             LinearLayoutManager.VERTICAL,false)
-        var list = ArrayList<EventModel>()
-        val adapter = EventAdabpter(list,holder.context)
+        list = ArrayList<EventModel>()
+        adapter = EventAdabpter(list,holder.context)
         recyclerView.adapter = adapter
         list.add(EventModel("Men's Final Four","05/04/2024","Next spring, 68 collegiate teams comprised of the country’s best and brightest amateur athletes in the game of basketball will compete for the title of National Champions. In 2024, the biggest games of the season will play out in Phoenix, Arizona. The two national semi-final matches will take place on April 6, 2024 and the national championship final will follow on April 8th"))
         list.add(EventModel("Miami Grand Prix","05/02/2024","Since its spectacular debut in 2022, the Miami Grand Prix has quickly become one of the hottest tickets in the sporting world. The next Miami Grand Prix will take place on May 5, 2024, at the Miami International Autodrome. The race encapsulates everything we know and love about Miami: plenty of glitz and glamour, sophistication, excitement, and celebrity presence."))
         list.add(EventModel("Indianapolis 500 ","05/27/2024","The Indy 500 is IndyCar’s most prestigious event and is held annually at the iconic Indianapolis Motor Speedway. The race plays out over 500 miles (200 laps) and is traditionally held over Memorial Day Weekend. The next Indy 500 is scheduled for May 26, 2024 and will be the 108th running of this thrilling event. This beloved race showcases the top level of American Championship IndyCar racing. It is considered part of the Triple Crown of Motorsport, one of the three most prestigious motorsport events in the world (the 24 Hours of Le Mans and the Monaco Grand Prix are the other two). The inaugural race was held in 1911 and was won by Ray Harroun."))
         list.add(EventModel("French Open","05/26/2024","Be there as tennis’ brightest stars converge in Paris to battle it out at the world’s greatest clay court championships. The thrilling tennis action combined with the universally loved destination of Paris creates an incredible sports travel experience."))
-
+        val btn = holder.findViewById<FloatingActionButton>(R.id.eventAdd)
+        btn.setOnClickListener{
+            EventDialog(this).show(parentFragmentManager,"event fragment")
+        }
         adapter.notifyDataSetChanged()
         return holder
     }
-
+    fun addEvent(eventModel: EventModel){
+        list.add(eventModel)
+        adapter.notifyItemChanged(list.size)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
