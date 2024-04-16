@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="order_no">Order No.</string>
+    <string name="total_payable">Total Payable</string>
+    <string name="dollar">$</string>
+    <string name="status">Status</string>
+    <string-array name="delivery_status">
+        <item>Pending</item>
+        <item>Delivered</item>
+    </string-array>
+</resources>

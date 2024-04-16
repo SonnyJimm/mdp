@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content"
+    >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/athleteName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Name: "
+                />
+            <TextView
+                android:id="@+id/athleteSport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:text="Sport: "
+                />
+            <TextView
+                android:id="@+id/athleteCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:text="Country: "
+                />
+            <TextView
+                android:id="@+id/athleteBest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:text="Best Performance: "
+                />
+            <TextView
+                android:id="@+id/athleteMedals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:text="Medals Awarded: "
+                />
+            <TextView
+                android:id="@+id/athleteFacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:text="Facts: "
+                />
+        </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
