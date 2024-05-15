@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/botSpecies" android:title="@string/btn_txt_species" android:icon="@drawable/baseline_dataset_24"/>
+    <item android:id="@+id/botAnimal" android:title="@string/btn_txt_animal" android:icon="@drawable/baseline_description_24"/>
+</menu>
