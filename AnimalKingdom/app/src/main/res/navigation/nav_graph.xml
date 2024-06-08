@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_first">
+    <fragment
+        android:id="@+id/fragment_first"
+        android:name="com.mdp.animalkingdom.fragment_first"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first" >
+        <action
+            android:id="@+id/action_fragment_first_to_speciesDetailFragment"
+            app:destination="@id/speciesDetailFragment" />
+        <action
+            android:id="@+id/action_fragment_first_to_animalDetailFrament"
+            app:destination="@id/animalDetailFrament" />
+    </fragment>
+    <fragment
+        android:id="@+id/animalDetailFrament"
+        android:name="com.mdp.animalkingdom.animal.AnimalDetailFrament"
+        android:label="fragment_animal_detail_frament"
+        tools:layout="@layout/fragment_animal_detail_frament" />
+    <fragment
+        android:id="@+id/speciesDetailFragment"
+        android:name="com.mdp.animalkingdom.species.SpeciesDetailFragment"
+        android:label="fragment_species_detail"
+        tools:layout="@layout/fragment_species_detail" />
+</navigation>
